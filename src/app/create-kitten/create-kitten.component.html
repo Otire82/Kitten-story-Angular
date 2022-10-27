@@ -1,0 +1,91 @@
+<div class="container">
+  <h1>Inscrivez votre chat</h1>
+
+  <form class="form"
+    [formGroup]="kittenForm"
+    (ngSubmit)="thisForm.valid && createKitten()"
+    #thisForm="ngForm"
+  >
+    <div class="form-style">
+      <label for="name">Nom : </label>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Nom"
+        formControlName="kittenName"
+      />
+      
+      <div
+        *ngIf="
+          kittenForm.get('kittenName')?.touched &&
+          kittenForm.get('kittenName')?.errors
+        "
+      >
+        <small class="invalidInput">Le nom est requis.</small>
+      </div>
+    </div>
+    <div class="form-style">
+      <label for="race">Race : </label>
+      <input
+        type="text"
+        name="race"
+        class="form-control"
+        placeholder="Race"
+        formControlName="race"
+      />
+      <div
+        *ngIf="
+          kittenForm.get('race')?.touched && kittenForm.get('race')?.errors
+        "
+      >
+        <small class="invalidInput">La race est requise.</small>
+      </div>
+    </div>
+
+    <div class="form-style">
+      <label for="birthday">Date de naissance : </label>
+      <input
+        type="date"
+        name="birthday"
+        class="form-control"
+        placeholder="Date"
+        formControlName="birthdate"
+      />
+      <div
+        *ngIf="
+          kittenForm.get('birthdate')?.touched &&
+          kittenForm.get('birthdate')?.errors
+        "
+      >
+        <small class="invalidInput">La date de naissance est requise.</small>
+      </div>
+    </div>
+
+    <div class="form-style">
+      <label for="image">Lien de l'image : </label>
+      <input
+        type="url"
+        name="image"
+        class="form-control"
+        placeholder="URL de l'image"
+        formControlName="imgLink"
+      />
+      <div
+        *ngIf="
+          kittenForm.get('imgLink')?.touched &&
+          kittenForm.get('imgLink')?.errors
+        "
+      >
+        <small class="invalidInput">Une image est requise.</small>
+      </div>
+    </div>
+    <button
+      [ngClass]="{ formDisabled: kittenForm.invalid }"
+      type="submit"
+      class="btn"
+    >
+      Valider
+    </button>
+  </form>
+</div>

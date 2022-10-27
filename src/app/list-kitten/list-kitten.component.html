@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="col-10">
+    <app-create-kitten (sendKitten)="addKitten($event)"></app-create-kitten>
+
+    <h1>Liste des chats à adopter ou pas!?</h1>
+
+    <div
+      class="card-center"
+      (mouseover)="showInfo = true"
+      (mouseout)="showInfo = false"
+    >
+      <div
+        class="cardCat"
+        *ngFor="let currentKitten of kittens; let index = index"
+      >
+        <img src="{{ currentKitten.img }}" class="card-img" />
+
+        <div class="card-body">
+          <ul>
+            <li>Nom : {{ currentKitten.name }}</li>
+            <div (mouseover)="showInfo = true" (mouseout)="showInfo = false">
+              <div *ngIf="showInfo">
+                <li>Race : {{ currentKitten.race }}</li>
+                <li>Date de naissance : {{ currentKitten.birthdate }}</li>
+              </div>
+            </div>
+          </ul>
+        </div>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="adoptKitten(index)"
+        >
+          Adopter
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-2">
+    <h2>Voilà celui que vous avez choisi. Adieu!!!</h2>
+    <app-user-kitten
+      *ngFor="let currentKitten of userKittens"
+      [kitten]="currentKitten"
+    ></app-user-kitten>
+  </div>
+</div>

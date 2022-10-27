@@ -1,0 +1,10 @@
+<div class="row">
+  <div *ngIf="kitten" class="card">
+    <img src="{{ kitten.img }}" alt="kitten image" class="card-img-top" />
+    <div class="card-body">
+      <p>Nom : {{ kitten.name }}</p>
+      <p>Race : {{ kitten.race }}</p>
+      <p>Date de naissance{{ kitten.birthdate }}</p>
+    </div>
+  </div>
+</div>
